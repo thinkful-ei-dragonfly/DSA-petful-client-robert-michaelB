@@ -20,10 +20,10 @@ export default class LandingDescription extends React.Component {
         
         </section>
         <section id="callAction">
-          <img alt="a cute cat and dog snuggling" src='../../static/animal-cat-cute.jpg'></img>
-          <p>
+          <img id="landing-img" alt="a cute cat and dog snuggling" src='../../static/animal-cat-cute.jpg'></img>
+          <h3>
             Navigate to our home page below to see our animals and reserve your place in line.
-          </p>
+          </h3>
         </section>
         <button
           id="hideLanding"

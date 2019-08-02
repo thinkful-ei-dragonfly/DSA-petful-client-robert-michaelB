@@ -35,25 +35,6 @@ nav {
   padding-bottom: 15px;
 }
 
-#hideLanding {
-  margin-top: 20px;
-  width: 250px;
-  padding-left: 10px;
-  padding-right: 10px;
-  background-color: rgba(221, 221, 221, .5);
-  border: 1px solid gray;
-  color: black;
-  text-align: center;
-  font-size: 18px;
-  font-weight: bold;
-  margin: 4px 2px;
-  transition: 0.3s;
-  cursor: pointer;
-  border-radius: 5%;
-}
-
-
-
 #hideLanding:hover {
   background-color: rgba(97, 163, 204, 0.4);
 }
