@@ -17,14 +17,15 @@ class App extends React.Component {
     showLandingPage: true,
   };
 
+  
 
   componentDidMount() {
     /* get necessary adoption data from server */
     Promise.all([
-      fetch(`${config.API_ENDPOINT}/dog`),
-      fetch(`${config.API_ENDPOINT}/cat`),
-      fetch(`${config.API_ENDPOINT}/people`),
-      fetch(`${config.API_ENDPOINT}/history`)
+      fetch(`${config.API_ENDPOINT}/api/dog`),
+      fetch(`${config.API_ENDPOINT}/api/cat`),
+      fetch(`${config.API_ENDPOINT}/api/people`),
+      fetch(`${config.API_ENDPOINT}/api/history`)
     ])
       .then(([dogRes, catRes, peopleRes, historyRes]) => {
         if (!dogRes.ok) return dogRes.json().then(e => Promise.reject(e));
@@ -34,6 +35,7 @@ class App extends React.Component {
         return Promise.all([dogRes.json(), catRes.json(), peopleRes.json(), historyRes.json()]);
       })
       .then(([dog, cat, people, history]) => {
+        console.log(dog);
         this.setState({ dog, cat, people, history });
       })
       .catch(error => {
@@ -54,7 +56,9 @@ class App extends React.Component {
       <div>
         < Header />
         { this.state.showLandingPage ? < LandingDescription onLandingButtonClick={this.onLandingButtonClick}></LandingDescription> : '' }
+        <div>{'' + this.state.dog}</div>
       </div>
+      
     );
   }
 }
