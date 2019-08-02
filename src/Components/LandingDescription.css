@@ -1,0 +1,78 @@
+* {
+  box-sizing: border-box;
+}
+
+nav,
+footer {
+  padding: 1% 0;
+  background-color: #aaa;
+}
+
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+}
+
+#app-title {
+  padding: 20px 15px;
+  padding-bottom: 5px;
+  background-color: rgba(29, 161, 242, .05);
+}
+
+.landingRow {
+  background-color: rgba(0, 161, 242, .1);
+  margin-top: 15px;
+  padding-bottom: 15px;
+}
+
+#callAction {
+  background-color: rgba(219, 161, 242, .1);
+  margin-top: 15px;
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+}
+
+#hideLanding {
+  margin-top: 20px;
+  width: 250px;
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: rgba(221, 221, 221, .5);
+  border: 1px solid gray;
+  color: black;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  margin: 4px 2px;
+  transition: 0.3s;
+  cursor: pointer;
+  border-radius: 5%;
+}
+
+
+
+#hideLanding:hover {
+  background-color: rgba(97, 163, 204, 0.4);
+}
+
+p {
+  margin: 0 auto;
+  max-width: 650px;
+}
+
+p + p {
+  margin-top: 15px;
+}
+
+#thesis {
+  padding-top: 5px; 
+}
+
+h3 {
+  text-align: center;
+  margin: auto;
+  padding: 15px;
+}
