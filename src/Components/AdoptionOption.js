@@ -15,17 +15,17 @@ export default class AdoptionOption extends React.Component {
     let id = 0;
      for (let stat in animalObj) {
        if (stat !== 'imageURL' && stat !== 'imageDescription') {
-         infoArr.push(<li key={id++} class="animal-stat">{'' + stat + ': ' + animalObj[stat] }</li>)
+         infoArr.push(<li key={id++} className="animal-stat">{'' + stat + ': ' + animalObj[stat] }</li>)
        }
     }
 
   return (
-    <div class="adoption-option">
+    <div className="adoption-option">
       <img src={this.props.animal.imageURL} alt={this.props.animal.imageDescription} ></img>
-      <ul class="animal-info">
+      <ul className="animal-info">
         {infoArr}
       </ul>
-      <button class='adopt-btn'>Adopt {this.props.animal.name}</button>
+      <button className='adopt-btn' disabled={!this.props.registered} >Adopt {this.props.animal.name}</button>
     </div>    
   );
   }

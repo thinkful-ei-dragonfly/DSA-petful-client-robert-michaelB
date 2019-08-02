@@ -3,6 +3,7 @@ import config from './config';
 import './App.css';
 import Header from './Components/Header.js';
 import AdoptionOption from './Components/AdoptionOption.js';
+import Register from './Components/Register.js';
 // import CatAdoptionOption from './Components/CatAdoptionOption.js';
 
 // import FormQuery from './Components/FormQuery/FormQuery';
@@ -18,6 +19,7 @@ class App extends React.Component {
     cat: null,
     hasError: false,
     showLandingPage: true,
+    registered: false
   };
 
   componentDidMount() {
@@ -64,8 +66,8 @@ class App extends React.Component {
   render() {
 
     /* determine if dog and cat data is null, if so, dont show component*/
-    let dogComponent = ( this.state.dog ? <AdoptionOption animal={this.state.dog} ></AdoptionOption> : '');
-    let catComponent = ( this.state.cat ? <AdoptionOption animal={this.state.cat} ></AdoptionOption> : '');
+    let dogComponent = (this.state.dog ? <AdoptionOption animal={this.state.dog} registered={this.state.registered}></AdoptionOption> : '');
+    let catComponent = (this.state.cat ? <AdoptionOption animal={this.state.cat} registered={this.state.registered} ></AdoptionOption> : '');
 
     return (
       <div>
@@ -75,16 +77,21 @@ class App extends React.Component {
             onLandingButtonClick={this.onLandingButtonClick}
           />
         ) : (
-          ''
-        )}
+            ''
+          )}
         {this.state.showLandingPage ? (
           ''
         ) : (
-          <div class="adoption-holder" >
-            {dogComponent}
-            {catComponent}
-          </div>
-        )}
+            <div className="adoption-holder" >
+              {dogComponent}
+              {catComponent}
+            </div>
+
+
+          )}
+        <div className="register-holder" >
+          <Register />
+        </div>
       </div>
     );
   }
