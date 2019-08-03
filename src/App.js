@@ -113,8 +113,8 @@ class App extends React.Component {
             <section id="adoption-queue">
               <AdoptionQueue people={this.state.people} />
             </section>
-            <section>
-              <AdoptHistory></AdoptHistory>
+            <section id="adopt-history">
+              <AdoptHistory history={this.state.history}></AdoptHistory>
             </section>
           </div>
         )}
