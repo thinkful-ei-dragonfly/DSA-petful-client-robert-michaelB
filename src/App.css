@@ -17,19 +17,43 @@ header {
 }
 
 /* need to center landing button */
-#hideLanding {
+#start-button {
+  padding: 7px;
   margin-top: 20px;
   width: 250px;
   padding-left: 10px;
   padding-right: 10px;
   background-color: rgba(221, 221, 221, .5);
   border: 1px solid gray;
-  color: black;
   text-align: center;
+  margin-left: auto;
+  margin-right: auto;
   font-size: 18px;
   font-weight: bold;
-  margin: auto;
   transition: 0.3s;
   cursor: pointer;
   border-radius: 5%;
+}
+
+.buttons {
+  text-align: center;
+  margin: auto;
+}
+
+.field {
+  text-align: center;
+  margin: auto;
+}
+
+.field > label {
+  padding: 10px;
+}
+
+.register {
+  text-align: center;
+  margin: auto;
+}
+
+.line-person {
+  list-style: decimal;
 }

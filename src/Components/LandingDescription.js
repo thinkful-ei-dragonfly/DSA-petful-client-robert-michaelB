@@ -25,12 +25,12 @@ export default class LandingDescription extends React.Component {
             Navigate to our home page below to see our animals and reserve your place in line.
           </h3>
         </section>
-        <button
+        {/* <button
           id="hideLanding"
-          onClick={() => this.props.onLandingButtonClick()}
+          onClick={(e) => this.props.onLandingButtonClick(e)}
         >
           Start looking now :)
-        </button>
+        </button> */}
       </div>
     );
   }

@@ -78,26 +78,28 @@ export default class Register extends React.Component {
 
   render() {
     return (
-      <section className='Register'>
+      <section className='register'>
         <form>
           <div className='field'>
             <label htmlFor='name-input'>
-              Name
+              Your name:
             </label>
             <input
               type='text'
               id='name-input'
               name='name'
               onChange={e => this.updateName(e.target.value)}
+              required
               />
           </div>
+          <ValidationError id="validation" hasError={!this.state.nameValid} message={this.state.validationMessages.name} />
           <div className='buttons'>
-            <button disabled={!this.state.formValid} type='submit'>
-            Register
+            <button id="start-button" disabled={!this.state.formValid} onClick={(e) => this.props.onLandingButtonClick(e, this.state.name)} type='submit'>
+            Start looking now :)
             </button>
           </div>
         </form>
-        <ValidationError hasError={!this.state.nameValid} message={this.state.validationMessages.name} />
+        
       </section>
     )
   }

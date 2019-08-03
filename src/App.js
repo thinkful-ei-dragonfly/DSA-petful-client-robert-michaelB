@@ -4,22 +4,21 @@ import './App.css';
 import Header from './Components/Header.js';
 import AdoptionOption from './Components/AdoptionOption.js';
 import Register from './Components/Register.js';
-// import CatAdoptionOption from './Components/CatAdoptionOption.js';
+import AdoptionQueue from './Components/AdoptionQueue.js'
+import AdoptHistory from './Components/AdoptHistory.js'
 
-// import FormQuery from './Components/FormQuery/FormQuery';
-// import TweetList from './Components/TweetList/TweetList';
-// import SearchHistory from './Components/SearchHistory/SearchHistory';
 import LandingDescription from './Components/LandingDescription.js';
 
 class App extends React.Component {
   state = {
+    currentUser: null,
     people: null,
     history: null,
     dog: null,
     cat: null,
     hasError: false,
     showLandingPage: true,
-    registered: false
+    registered: false,
   };
 
   componentDidMount() {
@@ -52,148 +51,71 @@ class App extends React.Component {
       });
   }
 
-  handleAdoptClick = (event) => {
+  handleAdoptClick = event => {
     event.preventDefault();
     /* POST request to server */
-  }
+  };
 
-  onLandingButtonClick = () => {
+  onLandingButtonClick = (e, name) => {
+    e.preventDefault();
     this.setState({
       showLandingPage: false,
+      currentUser: name
     });
   };
 
   render() {
-
     /* determine if dog and cat data is null, if so, dont show component*/
-    let dogComponent = (this.state.dog ? <AdoptionOption animal={this.state.dog} registered={this.state.registered}></AdoptionOption> : '');
-    let catComponent = (this.state.cat ? <AdoptionOption animal={this.state.cat} registered={this.state.registered} ></AdoptionOption> : '');
+    let dogComponent = this.state.dog ? (
+      <AdoptionOption
+        animal={this.state.dog}
+        registered={this.state.registered}
+      />
+    ) : (
+      ''
+    );
+    let catComponent = this.state.cat ? (
+      <AdoptionOption
+        animal={this.state.cat}
+        registered={this.state.registered}
+      />
+    ) : (
+      ''
+    );
 
     return (
       <div>
         <Header />
         {this.state.showLandingPage ? (
-          <LandingDescription
-            onLandingButtonClick={this.onLandingButtonClick}
-          />
+          <div>
+            <LandingDescription
+              onLandingButtonClick={this.onLandingButtonClick}
+            />
+            <Register onLandingButtonClick={this.onLandingButtonClick} />
+          </div>
         ) : (
-            ''
-          )}
+          ''
+        )}
         {this.state.showLandingPage ? (
           ''
         ) : (
-            <div className="adoption-holder" >
+          <div id="adoption-page">
+            <section></section>
+            <section className="adoption-holder">
               {dogComponent}
               {catComponent}
-            </div>
-
-
-          )}
-        <div className="register-holder" >
-          <Register />
-        </div>
+            </section>
+            <section id="adoption-queue">
+              <AdoptionQueue people={this.state.people} />
+            </section>
+            <section>
+              <AdoptHistory></AdoptHistory>
+            </section>
+          </div>
+        )}
       </div>
     );
   }
 }
 
 export default App;
-
-/* retrieve past query history for all users */
-// componentDidMount() {
-//   fetch(config.API_ENDPOINT + '/queries/history')
-//     .then(response => {
-//       if (!response.ok) {
-//         throw new Error({ message: 'error with getting history' });
-//       }
-//       return response.json();
-//     })
-//     .then(data => {
-//       this.setState({
-//         queries: data.queries,
-//       });
-//     })
-//     .catch(err => console.log(err.message));
-// }
-
-// handleSubmitQuery = query => {
-
-//   fetch(config.API_ENDPOINT + `/tweets/queries/${query}`)
-//     .then(response => {
-//       if (!response.ok) {
-//         throw new Error({ message: 'something seems to have gone wrong' });
-//       }
-//       return response.json();
-//     })
-//     .then(data => {
-//       this.setState(
-//         {
-//           watsonEmotionResults: data.watsonEmotionResults,
-//           tweets: data.duplicatesFiltered,
-//           hasError: false,
-//           currentQuery: query,
-//         },
-//         this.addToHistory(query)
-//       );
-//     })
-//     .catch(error =>
-//       this.setState({
-//         hasError: true,
-//       })
-//     );
-// };
-
-// addToHistory(newQuery) {
-//   const body = JSON.stringify({
-//     query: newQuery,
-//   });
-//   const options = {
-//     method: 'POST',
-//     headers: { 'content-type': 'application/json' },
-//     body,
-//   };
-//   // check if its already been searched, if not dont add
-//   let pastQueries = [];
-//   for (let i = 0; i < this.state.queries.length; i++) {
-//     pastQueries.push(this.state.queries[i].query);
-//   }
-//   if (!pastQueries.includes(newQuery)) {
-//     fetch(config.API_ENDPOINT + '/queries/history', options)
-//       .then(response => {
-//         if (!response.ok) {
-//           throw new Error({ message: 'error with retrieving history' });
-//         }
-//         return response.json();
-//       })
-//       .then(data => {
-//         this.setState({
-//           queries: [...this.state.queries, data],
-//         });
-//       })
-//       .catch(err => console.log(err.message));
-//   }
-// }
-
-// let isEmotionDataPresent = this.state.watsonEmotionResults ? true : false;
-// let tweetList = this.state.tweets ? <TweetList tweets={this.state.tweets} /> : '';
-// let emotionChartDisplay, sentimentChartDisplay;
-// if (isEmotionDataPresent) {
-//   emotionChartDisplay = (
-//     <EmotionChart watsonEmotionResults={this.state.watsonEmotionResults} />
-//   );
-//   sentimentChartDisplay = (
-//     <SentimentChart
-//       watsonEmotionResults={this.state.watsonEmotionResults}
-//     />
-//   );
-// } else {
-//   emotionChartDisplay = '';
-//   sentimentChartDisplay = '';
-// }
-
-// let errorDisplay;
-// if (this.state.hasError) {
-//   // errorDisplay = <SearchError />;
-// } else {
-//   errorDisplay = '';
-// }
