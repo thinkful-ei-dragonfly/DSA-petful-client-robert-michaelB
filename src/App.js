@@ -2,6 +2,7 @@ import React from 'react';
 import config from './config';
 import './App.css';
 import Header from './Components/Header.js';
+import UserStatus from './Components/UserStatus.js'
 import AdoptionOption from './Components/AdoptionOption.js';
 import Register from './Components/Register.js';
 import AdoptionQueue from './Components/AdoptionQueue.js'
@@ -70,6 +71,7 @@ class App extends React.Component {
       <AdoptionOption
         animal={this.state.dog}
         registered={this.state.registered}
+        placeInLine={this.state.people.indexOf(this.state.currentUser) !== 0}
       />
     ) : (
       ''
@@ -78,6 +80,7 @@ class App extends React.Component {
       <AdoptionOption
         animal={this.state.cat}
         registered={this.state.registered}
+        placeInLine={this.state.people.indexOf(this.state.currentUser) !== 0}
       />
     ) : (
       ''
@@ -100,7 +103,9 @@ class App extends React.Component {
           ''
         ) : (
           <div id="adoption-page">
-            <section></section>
+            <section id="user-status">
+              <UserStatus currentUser={this.state.currentUser} people={this.state.people} />
+            </section>
             <section className="adoption-holder">
               {dogComponent}
               {catComponent}

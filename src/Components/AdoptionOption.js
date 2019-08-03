@@ -25,7 +25,7 @@ export default class AdoptionOption extends React.Component {
       <ul className="animal-info">
         {infoArr}
       </ul>
-      <button className='adopt-btn' disabled={!this.props.registered} >Adopt {this.props.animal.name}</button>
+      <button className='adopt-btn' disabled={this.props.placeInLine} >Adopt {this.props.animal.name}</button>
     </div>    
   );
   }

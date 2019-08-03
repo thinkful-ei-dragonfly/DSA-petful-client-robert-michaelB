@@ -40,6 +40,11 @@ header {
   margin: auto;
 }
 
+h2 {
+  text-align: center;
+  margin: auto;
+}
+
 .field {
   text-align: center;
   margin: auto;
@@ -57,3 +62,4 @@ header {
 .line-person {
   list-style: decimal;
 }
+
