@@ -1,13 +1,7 @@
 import React from 'react';
 
 export default class AdoptionOption extends React.Component {
-
-
-  handleAdoptClick() {
-    // this.props
-  }
   
-
   render() {
     // get info from props into easily accessible format, delineating between dog and cat
     let animalObj = this.props.animal;
@@ -25,7 +19,7 @@ export default class AdoptionOption extends React.Component {
       <ul className="animal-info">
         {infoArr}
       </ul>
-      <button className='adopt-btn' disabled={this.props.placeInLine} >Adopt {this.props.animal.name}</button>
+      <button className='adopt-btn' disabled={this.props.placeInLine} onClick={(e) => this.props.handleAdoptClick(e, this.props.animal)}>Adopt {this.props.animal.name}</button>
     </div>    
   );
   }
