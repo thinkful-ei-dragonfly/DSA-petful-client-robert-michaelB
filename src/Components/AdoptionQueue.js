@@ -7,9 +7,11 @@ export default class AdoptionQueue extends React.Component{
   render() {
     
     let line = [];
-    line = this.props.people.map( (person, idx) => {
-      return <li className='line-person' key={idx}>{person}</li>
-    } )
+    if (this.props.people) {
+      line = this.props.people.map( (person, idx) => {
+        return <li className='line-person' key={idx}>{person}</li>
+      } )
+    }
 
     return (
       <div id="adopt-line">

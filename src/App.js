@@ -24,32 +24,33 @@ class App extends React.Component {
 
   componentDidMount() {
     /* get necessary adoption data from server */
-    Promise.all([
-      fetch(`${config.API_ENDPOINT}/api/dog`),
-      fetch(`${config.API_ENDPOINT}/api/cat`),
-      fetch(`${config.API_ENDPOINT}/api/people`),
-      fetch(`${config.API_ENDPOINT}/api/history`),
-    ])
-      .then(([dogRes, catRes, peopleRes, historyRes]) => {
-        if (!dogRes.ok) return dogRes.json().then(e => Promise.reject(e));
-        if (!catRes.ok) return catRes.json().then(e => Promise.reject(e));
-        if (!peopleRes.ok) return peopleRes.json().then(e => Promise.reject(e));
-        if (!historyRes.ok)
-          return historyRes.json().then(e => Promise.reject(e));
-        return Promise.all([
-          dogRes.json(),
-          catRes.json(),
-          peopleRes.json(),
-          historyRes.json(),
-        ]);
-      })
-      .then(([dog, cat, people, history]) => {
-        this.setState({ dog, cat, people, history, isAdopted: false });
-      })
-      .catch(error => {
-        console.error({ error });
-        this.setState({ hasError: true });
-      });
+    // Promise.all([
+    //   fetch(`${config.API_ENDPOINT}/api/dog`),
+    //   fetch(`${config.API_ENDPOINT}/api/cat`),
+    //   fetch(`${config.API_ENDPOINT}/api/people`),
+    //   fetch(`${config.API_ENDPOINT}/api/history`),
+    // ])
+    //   .then(([dogRes, catRes, peopleRes, historyRes]) => {
+    //     if (!dogRes.ok) return dogRes.json().then(e => Promise.reject(e));
+    //     if (!catRes.ok) return catRes.json().then(e => Promise.reject(e));
+    //     if (!peopleRes.ok) return peopleRes.json().then(e => Promise.reject(e));
+    //     if (!historyRes.ok)
+    //       return historyRes.json().then(e => Promise.reject(e));
+    //     return Promise.all([
+    //       dogRes.json(),
+    //       catRes.json(),
+    //       peopleRes.json(),
+    //       historyRes.json(),
+    //     ]);
+    //   })
+    //   .then(([dog, cat, people, history]) => {
+    //     this.setState({ dog, cat, people, history, isAdopted: false });
+    //   })
+    //   .catch(error => {
+    //     console.error({ error });
+    //     this.setState({ hasError: true });
+    //   });
+    this.fetchDog()
   }
 
   handleAdoptClick = (event, animalObj) => {
@@ -106,6 +107,23 @@ class App extends React.Component {
       });
   }
 
+  fetchDog() {
+      fetch(`${config.API_ENDPOINT}/api/dog`)
+      .then(res =>
+        (!res.ok)
+          ? res.json().then(e => Promise.reject(e))
+          : res.json()
+      )
+      .then((dog) => {
+        this.setState({ dog });
+      })
+      .catch(error => {
+        console.error({ error });
+        this.setState({ hasError: true });
+      });
+  }
+
+
   onLandingButtonClick = (e, name) => {
     e.preventDefault();
 
@@ -151,15 +169,18 @@ class App extends React.Component {
 
   render() {
     /* determine if dog and cat data is null, if so, dont show component*/
-    let dogComponent = this.state.dog ? (
+    let dogComponent = ''
+    if (this.state.people) {
+      dogComponent = this.state.dog ? (
       <AdoptionOption
         animal={this.state.dog}
         placeInLine={this.state.people.indexOf(this.state.currentUser) !== 0}
         handleAdoptClick={this.handleAdoptClick}
       />
-    ) : (
-      ''
-    );
+      ) : (
+        ''
+      )
+    }
     let catComponent = this.state.cat ? (
       <AdoptionOption
         animal={this.state.cat}

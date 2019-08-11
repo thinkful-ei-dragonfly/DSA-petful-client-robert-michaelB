@@ -3,9 +3,12 @@ import React from 'react';
 export default class AdoptHistory extends React.Component {
 
   render() {
-    let adoptionHistory = this.props.history.map( (adoption, idx) => {
-      return <li key={idx}>{adoption.person} adopted {adoption.animal.name}.</li>
-    });
+    let adoptionHistory = []
+    if (this.props.history) {
+      adoptionHistory = this.props.history.map( (adoption, idx) => {
+        return <li key={idx}>{adoption.person} adopted {adoption.animal.name}.</li>
+      })
+    }
 
     return (
       <div>
