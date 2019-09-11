@@ -1,3 +1,8 @@
+body {
+  max-width: 800px;
+  margin: auto;
+}
+
 header {
   text-align: center;
   margin: auto;
@@ -23,7 +28,7 @@ header {
   width: 250px;
   padding-left: 10px;
   padding-right: 10px;
-  background-color: rgba(221, 221, 221, .5);
+  background-color: rgba(221, 221, 221, 0.5);
   border: 1px solid gray;
   text-align: center;
   margin-left: auto;
@@ -33,6 +38,12 @@ header {
   transition: 0.3s;
   cursor: pointer;
   border-radius: 5%;
+}
+
+.adopt-btn {
+  text-align: center;
+  margin: auto;
+  margin-bottom: 50px;
 }
 
 .buttons {

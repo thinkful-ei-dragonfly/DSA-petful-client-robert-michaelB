@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 
 export default class UserStatus extends React.Component {
 
@@ -13,7 +13,7 @@ export default class UserStatus extends React.Component {
       )
     } else {
       return (
-        <div>Missing user data</div>
+        <div></div>
       )
     }
   }
