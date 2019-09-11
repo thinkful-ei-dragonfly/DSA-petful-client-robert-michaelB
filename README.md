@@ -2,7 +2,7 @@ PETFUL
 By Robert & MichaeB
 
 Live App
-.sh
+https://petful-robert-mikeb.michaelbravo777.now.sh/
 
 Server Address
 https://petful-server-robert-michaelb.herokuapp.com
